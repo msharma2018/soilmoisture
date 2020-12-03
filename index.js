@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 app.set("view engine", "ejs"); 
 app.set("views", __dirname + "/views"); 
 app.use(bodyParser.urlencoded({ extended: false })); 
-
+const PORT = process.env.PORT || 9000;
 
 app.get("/", (req, res) => {
 
@@ -29,4 +29,4 @@ app.get("/", (req, res) => {
 });
 
 
-app.listen(8900);
+app.listen(PORT);
