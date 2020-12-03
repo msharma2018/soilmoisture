@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Moisture App</title>
+</head>
+<body>
+<div>
+    <h1 style="text-align:center;color:blue">Mositure Detection App</h1>
+    <br>
+    <table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Plant Type</th>
+	      <th scope="col">Date Added</th>
+	      <th scope="col">Moisture Detected</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% result.forEach(function(data) { %>
+	    <tr>
+	      <th scope="row">1</th>
+	      <td><%= data.plantType %> </td>
+	      <td><%= data.dateAdded %> </td>
+	      <td><%= data.moistureDetected %> </td>
+	    </tr>
+	    <% }) %>
+	  </tbody>
+	</table>
+</div>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
