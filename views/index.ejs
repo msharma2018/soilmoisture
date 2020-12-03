@@ -18,9 +18,9 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	<% result.forEach(function(data) { %>
+	  	<% result.forEach(function(data,i) { %>
 	    <tr>
-	      <th scope="row">1</th>
+	      <th scope="row"><%= i+1 %></th>
 	      <td><%= data.plantType %> </td>
 	      <td><%= data.dateAdded %> </td>
 	      <td><%= data.moistureDetected %> </td>
@@ -28,7 +28,81 @@
 	    <% }) %>
 	  </tbody>
 	</table>
+	<canvas id="myChart"></canvas>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+	var dd =[];
+	<% result.forEach(function(data) { %>
+		var temp = '<%= data.dateAdded %>';
+		temp = temp.substr(0,temp.indexOf(' '));
+		var detection = '<%= data.moistureDetected %>';
+		if(detection == 'Yes'){
+			detection =1;
+		}else{
+			detection = 0;
+		}
+		//temp = temp+"T00:00:00";
+		dd.push(getJsonValue(new Date(temp),detection));
+	<% }) %>
+	
+function getJsonValue(dateAdded,detectionVal){
+	console.log('###'+dateAdded);
+	return {
+		x:dateAdded,
+		y:detectionVal,
+		r:10
+	};
+}
+console.log('dd is');
+console.dir(dd);	
+	var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bubble',
+    data: {
+        datasets: [{
+            label: 'moisture levels',
+            data: dd,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+        	xAxes: [{
+		      ticks: {
+		        callback: function(value, index, values) {
+		          return new Date(value).toISOString();
+			        }
+			    }
+			}],
+            yAxes: [{
+                ticks: {
+                    suggestedMin : -1,
+                    suggestedMax : 1,
+                    stepSize : 1
+                }
+            }]
+        }
+    }
+});
+</script>
 </html>
