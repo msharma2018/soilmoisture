@@ -15,6 +15,8 @@ npm install
 
 project will run at localhost:8800
 
+NOTE: Project automatically connects to the MYSQL database which displays plants data on the local host.
+
 For Raspberry pi: 
 
 Raspberry pi runs the python code which is also exsiting as a separate file in the git repository with name PYTH.PY
