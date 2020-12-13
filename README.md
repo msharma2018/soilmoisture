@@ -20,3 +20,5 @@ NOTE: Project automatically connects to the MYSQL database which displays plants
 For Raspberry pi: 
 
 Raspberry pi runs the python code which is also exsiting as a separate file in the git repository with name PYTH.PY
+
+FOR LIVE PROJECT VISIT : https://salty-earth-09654.herokuapp.com/
